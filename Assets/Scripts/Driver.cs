@@ -5,11 +5,6 @@ public class Driver : MonoBehaviour
     [SerializeField] float turnSpeed = 0f;
     [SerializeField] float movementSpeed = 0f;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         Move();
@@ -27,5 +22,4 @@ public class Driver : MonoBehaviour
         var turnInput = Input.GetAxis("Horizontal") * -turnSpeed * Time.deltaTime;
         transform.Rotate(0, 0, turnInput);
     }
-    //update
 }
