@@ -20,13 +20,15 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Package>())
         {
-            hasPackage = true; 
+            hasPackage = true;
+            //PlayPickupSFX()
         }
 
-        if(collision.gameObject.GetComponent<Customer>() && hasPackage)
+        if (collision.gameObject.GetComponent<Customer>() && hasPackage)
         {
             hasPackage = false;
             packagesDelivered++;
+            //PlayDeliverySFX/VFX()
             //CheckIfAllPackagesDelivered()
         }
     }
