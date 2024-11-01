@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //ps
+    //as
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Destroy(this.gameObject);    
     }
 }

@@ -4,6 +4,9 @@ public class Driver : MonoBehaviour
 {
     [SerializeField] float turnSpeed = 0f;
     [SerializeField] float movementSpeed = 0f;
+    [SerializeField] float boostSpeed = 0f;
+
+    bool isBoosting;
 
     void Update()
     {
@@ -21,5 +24,20 @@ public class Driver : MonoBehaviour
     {
         var turnInput = Input.GetAxis("Horizontal") * -turnSpeed * Time.deltaTime;
         transform.Rotate(0, 0, turnInput);
+    }
+
+    void Boost()
+    {
+        movementSpeed += boostSpeed;
+    }
+
+    public float GetBoostSpeed()
+    {
+        return boostSpeed;
+    }
+
+    public void SetBoosting(bool boosting)
+    {
+        isBoosting = boosting;
     }
 }

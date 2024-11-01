@@ -8,31 +8,67 @@ public class Player : MonoBehaviour
     [SerializeField] int health = 100;
     [SerializeField] int packagesToDeliver = 0;
 
+    [SerializeField] DeathHandler deathHandler;
+    [SerializeField] HUDisplay huDisplay;
+
     bool hasPackage = false;
     int packagesDelivered = 0;
+
+    Driver driver;
+
+    void Awake()
+    {
+        driver = GetComponent<Driver>();       
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         health -= 25;    
+        driver.SetBoosting(false);
+        
+        if(health <= 0)
+        {
+            Die();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Package>())
+        if(collision.gameObject.GetComponent<Package>() && !hasPackage)
         {
             hasPackage = true;
+            huDisplay.ActivateAffordanceText();
             //PlayPickupSFX()
         }
 
         if (collision.gameObject.GetComponent<Customer>() && hasPackage)
         {
             hasPackage = false;
+            huDisplay.DeactivateAffordanceText();
             packagesDelivered++;
+            Debug.Log("Success!");
             //PlayDeliverySFX/VFX()
             //CheckIfAllPackagesDelivered()
         }
+        
+        if (collision.gameObject.GetComponent<Boost>())
+        {
+            driver.SetBoosting(true);
+        }
     }
 
-    //Scene management to load next level when all packages delivered.
-    //Handle freezing game and forcing level restart if player health = 0
+    public int GetPlayerHealth()
+    {
+        return health;
+    }
+
+    public int GetPackagesToDeliver()
+    {
+        return packagesToDeliver - packagesDelivered;
+    }
+
+    void Die()
+    {
+        deathHandler.HandlePlayerDeath();
+    }
 }
