@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1114686326322303877}
   - component: {fileID: 5521317850889020380}
   - component: {fileID: 1272110184120395169}
+  - component: {fileID: 7561629555350245696}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -47,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288716ac9311e184bb2b24d59944a5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deliveryZone: {fileID: 0}
+  spawnPointOne: {fileID: 0}
+  spawnPointTwo: {fileID: 0}
+  spawnPointThree: {fileID: 0}
 --- !u!114 &1114686326322303877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,3 +94,19 @@ MonoBehaviour:
   packagesToDeliverText: {fileID: 0}
   playerHealthText: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &7561629555350245696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6596779061908200632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288716ac9311e184bb2b24d59944a5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deliveryZone: {fileID: 0}
+  spawnPointOne: {fileID: 0}
+  spawnPointTwo: {fileID: 0}
+  spawnPointThree: {fileID: 0}

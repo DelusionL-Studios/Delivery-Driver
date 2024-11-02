@@ -7,7 +7,6 @@ public class Package : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name + " triggered me.");
-        Destroy(this.gameObject);        
+        Debug.Log(collision.name + " triggered me.");        
     }
 }

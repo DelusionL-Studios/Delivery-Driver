@@ -6,7 +6,6 @@ public class Customer : MonoBehaviour
     //as
 
     void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(this.gameObject);    
+    {   
     }
 }

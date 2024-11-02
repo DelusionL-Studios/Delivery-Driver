@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] DeathHandler deathHandler;
     [SerializeField] HUDisplay huDisplay;
+    [SerializeField] DeliveryZoneSpawner zoneSpawner;
+    [SerializeField] Package package;
+    [SerializeField] Customer customer;
+    [SerializeField] LevelLoader levelLoader;
 
     bool hasPackage = false;
     int packagesDelivered = 0;
@@ -18,7 +22,8 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        driver = GetComponent<Driver>();       
+        driver = GetComponent<Driver>();    
+        package.gameObject.SetActive(true);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -38,6 +43,9 @@ public class Player : MonoBehaviour
         {
             hasPackage = true;
             huDisplay.ActivateAffordanceText();
+            package.gameObject.SetActive(false);
+            customer.gameObject.SetActive(true);
+            //zoneSpawner.SpawnDeliveryZone();
             //PlayPickupSFX()
         }
 
@@ -47,13 +55,28 @@ public class Player : MonoBehaviour
             huDisplay.DeactivateAffordanceText();
             packagesDelivered++;
             Debug.Log("Success!");
+            customer.gameObject.SetActive(false);
+            package.gameObject.SetActive(true);
             //PlayDeliverySFX/VFX()
-            //CheckIfAllPackagesDelivered()
+            CheckIfAllPackagesDelivered();
         }
         
         if (collision.gameObject.GetComponent<Boost>())
         {
             driver.SetBoosting(true);
+        }
+    }
+
+    void Die()
+    {
+        deathHandler.HandlePlayerDeath();
+    }
+
+    void CheckIfAllPackagesDelivered()
+    {
+        if (packagesDelivered >= packagesToDeliver) 
+        {
+            levelLoader.LoadNextScene();
         }
     }
 
@@ -67,8 +90,4 @@ public class Player : MonoBehaviour
         return packagesToDeliver - packagesDelivered;
     }
 
-    void Die()
-    {
-        deathHandler.HandlePlayerDeath();
-    }
 }
